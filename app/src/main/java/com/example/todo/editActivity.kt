@@ -49,7 +49,7 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateMode(id: Long) {
+    private fun updateMode(id: Long) { //클래스 문제
         val todo = realm.where<Todo>().equalTo("id", id).findFirst()!!
         todoEditText.setText(todo.title)
         calendarView.date = todo.date
@@ -63,13 +63,15 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
+    val calendar: Calendar = Calendar.getInstance()
+
     override fun onDestroy() {
         super.onDestroy()
         realm.close()
     }
 
 
-    val calendar: Calendar = Calendar.getInstance()
+
 
     private fun insertTodo() {
         realm.beginTransaction()
