@@ -37,15 +37,12 @@ class EditActivity : AppCompatActivity() {
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         }
-//
-//        fab.setOnClickListener{
-//            startActivity<EditActivity>()
-        
-//        }
+
+
     }
 
     private fun insertMode() {
-//        deleteFab.visibility = View.GONE
+        deleteFab.visibility = View.GONE
 
         doneFab.setOnClickListener {
             insertTodo()
