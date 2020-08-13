@@ -1,8 +1,8 @@
 package com.example.todo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
@@ -13,9 +13,12 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.yesButton
 import java.util.*
 
+
 class EditActivity : AppCompatActivity() {
 
     val realm = Realm.getDefaultInstance()
+
+    val calendar: Calendar = Calendar.getInstance()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,23 +37,23 @@ class EditActivity : AppCompatActivity() {
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         }
-
-        fab.setOnClickListener{
-            startActivity<EditActivity>()
-
-        }
+//
+//        fab.setOnClickListener{
+//            startActivity<EditActivity>()
+        
+//        }
     }
 
     private fun insertMode() {
-        deleteFab.visibility = View.GONE
+//        deleteFab.visibility = View.GONE
 
         doneFab.setOnClickListener {
             insertTodo()
         }
     }
 
-    private fun updateMode(id: Long) { //클래스 문제
-        val todo = realm.where<Todo>().equalTo("id", id).findFirst()!!
+    private fun updateMode(id: Long) {
+        val todo = realm.where<Todo>().equalTo("id",id).findFirst()!!
         todoEditText.setText(todo.title)
         calendarView.date = todo.date
 
@@ -61,9 +64,11 @@ class EditActivity : AppCompatActivity() {
         deleteFab.setOnClickListener {
             deleteTodo(id)
         }
+
     }
 
-    val calendar: Calendar = Calendar.getInstance()
+
+
 
     override fun onDestroy() {
         super.onDestroy()
